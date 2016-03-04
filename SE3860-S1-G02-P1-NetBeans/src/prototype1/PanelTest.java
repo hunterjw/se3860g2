@@ -5,6 +5,8 @@
  */
 package prototype1;
 
+// this is a minor change
+
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableCellRenderer;
