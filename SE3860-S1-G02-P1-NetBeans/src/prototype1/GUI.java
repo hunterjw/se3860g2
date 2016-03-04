@@ -17,9 +17,16 @@ import javax.swing.table.TableColumn;
 
  @author martinale
  */
+
+
 public class GUI extends javax.swing.JFrame
 {
+<<<<<<< HEAD
    File file;
+=======
+
+   
+>>>>>>> refs/remotes/origin/master
    /**
     Creates new form GUI
     */
@@ -106,7 +113,7 @@ public class GUI extends javax.swing.JFrame
       table1.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][]
          {
-            {null, null, null}
+
          },
          new String []
          {
@@ -306,22 +313,8 @@ public class GUI extends javax.swing.JFrame
          DefaultTableModel dtm2 = (DefaultTableModel) SampleTable.getModel();
          dtm2.setRowCount(SampleNum );
       }
+      SetupComboBox();
       
-      TableColumn column = table1.getColumnModel().getColumn(2);
-
-
-      JComboBox comboBox = new JComboBox();
-      comboBox.addItem("Snowboarding");
-      comboBox.addItem("Rowing");
-      comboBox.addItem("Chasing toddlers");
-      comboBox.addItem("Speed reading");
-      comboBox.addItem("Teaching high school");
-      comboBox.addItem("None");
-      column.setCellEditor(new DefaultCellEditor(comboBox));
-      DefaultTableCellRenderer renderer =
-                new DefaultTableCellRenderer();
-        renderer.setToolTipText("Click for combo box");
-        column.setCellRenderer(renderer);
    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
    private void exitOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitOptionActionPerformed
@@ -359,6 +352,35 @@ public class GUI extends javax.swing.JFrame
       } 
    }//GEN-LAST:event_saveFileOptionActionPerformed
    
+   void SetupComboBox()
+   {
+      TableColumn  NewColumn = table1.getColumnModel().getColumn(2);
+      TableColumn  SavedColumn = table1.getColumnModel().getColumn(1);
+      JComboBox comboBox = new JComboBox();
+      comboBox.addItem("{");
+      comboBox.addItem("}");
+      comboBox.addItem("[");
+      comboBox.addItem("]");
+      comboBox.addItem("|"); 
+      comboBox.addItem(".");
+      comboBox.addItem("D");
+      comboBox.addItem("d");
+      comboBox.addItem("M");
+      comboBox.addItem("m");      
+      comboBox.addItem("U");    
+      comboBox.addItem("u");  
+      comboBox.addItem("E"); 
+      comboBox.addItem("e");
+      comboBox.addItem("L");
+      comboBox.addItem("l");      
+      comboBox.addItem("A");
+      comboBox.addItem("a");      
+      NewColumn.setCellEditor(new DefaultCellEditor(comboBox));
+      DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+      NewColumn.setCellRenderer(renderer);
+      SavedColumn.setCellEditor(new DefaultCellEditor(comboBox));
+      SavedColumn.setCellRenderer(renderer);
+   };
 
    /**
     @param args the command line arguments
