@@ -5,9 +5,7 @@
  */
 
 package prototype1;
-import java.awt.*;
 import java.io.File;
-import java.io.FilenameFilter;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -21,12 +19,7 @@ import javax.swing.table.TableColumn;
 
 public class GUI extends javax.swing.JFrame
 {
-<<<<<<< HEAD
    File file;
-=======
-
-   
->>>>>>> refs/remotes/origin/master
    /**
     Creates new form GUI
     */
