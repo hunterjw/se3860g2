@@ -1,0 +1,14 @@
+REGEDIT4
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\SharedDlls]
+"C:\\Program Files\\Common Files\\Microsoft Shared\\Grphflt\\HPGLIM32.FLT"=dword:00000003
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\HPGL]
+"Path"="C:\\Program Files\\Common Files\\Microsoft Shared\\Grphflt\\HPGLIM32.FLT"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\HPGL\Clients]
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Shared Tools\Graphics Filters\Import\HPGL]
+"Path"="C:\\Program Files\\Common Files\\Microsoft Shared\\Grphflt\\HPGLIM32.FLT"
+"Extensions"="hgl plt"
+"Name"="HP Graphics Language"
