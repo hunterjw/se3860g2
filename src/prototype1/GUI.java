@@ -38,13 +38,9 @@ public class GUI extends javax.swing.JFrame
       initComponents();
       WarningLabel.setVisible(false);
       setResizable(false);
-<<<<<<< HEAD
       fileChoose.addChoosableFileFilter(new FHKFilter());
       fileChoose.setAcceptAllFileFilterUsed(false);
-      
-=======
       SetupComboBox();
->>>>>>> refs/remotes/origin/master
    }
 
    /**
@@ -365,18 +361,17 @@ public class GUI extends javax.swing.JFrame
          save(file);//not sure if this is good
    }//GEN-LAST:event_saveFileOptionActionPerformed
 
-<<<<<<< HEAD
    private void saveFileAsOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveFileAsOptionActionPerformed
    {//GEN-HEADEREND:event_saveFileAsOptionActionPerformed
       newFileOptionActionPerformed(evt);
       saveFileOptionActionPerformed(evt);
    }//GEN-LAST:event_saveFileAsOptionActionPerformed
-=======
+
    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jToggleButton2ActionPerformed
    {//GEN-HEADEREND:event_jToggleButton2ActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_jToggleButton2ActionPerformed
->>>>>>> refs/remotes/origin/master
+
    
    private void load(File f)
    {
