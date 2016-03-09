@@ -36,11 +36,15 @@ public class GUI extends javax.swing.JFrame
    public GUI()
    {
       initComponents();
-      jLabel3.setVisible(false);
+      WarningLabel.setVisible(false);
       setResizable(false);
+<<<<<<< HEAD
       fileChoose.addChoosableFileFilter(new FHKFilter());
       fileChoose.setAcceptAllFileFilterUsed(false);
       
+=======
+      SetupComboBox();
+>>>>>>> refs/remotes/origin/master
    }
 
    /**
@@ -60,19 +64,20 @@ public class GUI extends javax.swing.JFrame
       jPopupMenu1 = new javax.swing.JPopupMenu();
       jScrollPane1 = new javax.swing.JScrollPane();
       fileChoose = new javax.swing.JFileChooser();
-      textField1 = new java.awt.TextField();
+      SampleNumberInput = new java.awt.TextField();
       jLabel1 = new javax.swing.JLabel();
       jLabel2 = new javax.swing.JLabel();
-      textField2 = new java.awt.TextField();
+      EndYearInput = new java.awt.TextField();
       jScrollPane3 = new javax.swing.JScrollPane();
-      table1 = new javax.swing.JTable();
+      InfoTable = new javax.swing.JTable();
       jLabel4 = new javax.swing.JLabel();
       jLabel5 = new javax.swing.JLabel();
-      textField3 = new java.awt.TextField();
+      StartYearInput = new java.awt.TextField();
       jToggleButton1 = new javax.swing.JToggleButton();
       jScrollPane4 = new javax.swing.JScrollPane();
       SampleTable = new javax.swing.JTable();
-      jLabel3 = new javax.swing.JLabel();
+      WarningLabel = new javax.swing.JLabel();
+      jToggleButton2 = new javax.swing.JToggleButton();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu2 = new javax.swing.JMenu();
       newFileOption = new javax.swing.JMenuItem();
@@ -92,30 +97,35 @@ public class GUI extends javax.swing.JFrame
       jScrollPane2.setViewportView(jList2);
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+      getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-      textField1.addActionListener(new java.awt.event.ActionListener()
+      SampleNumberInput.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            textField1ActionPerformed(evt);
+            SampleNumberInputActionPerformed(evt);
          }
       });
+      getContentPane().add(SampleNumberInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 24, 92, -1));
 
       jLabel1.setText("Ending Year");
+      getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 127, -1, -1));
 
       jLabel2.setText("Starting Year");
+      getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 127, -1, -1));
 
-      textField2.addActionListener(new java.awt.event.ActionListener()
+      EndYearInput.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            textField2ActionPerformed(evt);
+            EndYearInputActionPerformed(evt);
          }
       });
+      getContentPane().add(EndYearInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 57, -1));
 
       jScrollPane3.setName(""); // NOI18N
 
-      table1.setModel(new javax.swing.table.DefaultTableModel(
+      InfoTable.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][]
          {
 
@@ -125,21 +135,26 @@ public class GUI extends javax.swing.JFrame
             "Year", "Event ", "New Event "
          }
       ));
-      jScrollPane3.setViewportView(table1);
+      jScrollPane3.setViewportView(InfoTable);
+
+      getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 54, 497, 472));
 
       jLabel4.setText("Sample Information");
+      getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 30, -1, -1));
 
       jLabel5.setText("Number of Samples");
+      getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
-      textField3.addActionListener(new java.awt.event.ActionListener()
+      StartYearInput.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
          {
-            textField3ActionPerformed(evt);
+            StartYearInputActionPerformed(evt);
          }
       });
+      getContentPane().add(StartYearInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 57, -1));
 
-      jToggleButton1.setText("OK");
+      jToggleButton1.setText("Set Up ");
       jToggleButton1.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -147,6 +162,7 @@ public class GUI extends javax.swing.JFrame
             jToggleButton1ActionPerformed(evt);
          }
       });
+      getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 530, -1, -1));
 
       SampleTable.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][]
@@ -160,8 +176,21 @@ public class GUI extends javax.swing.JFrame
       ));
       jScrollPane4.setViewportView(SampleTable);
 
-      jLabel3.setText("ERROR");
-      jLabel3.setEnabled(false);
+      getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 181, 223, 346));
+
+      WarningLabel.setText("ERROR");
+      WarningLabel.setEnabled(false);
+      getContentPane().add(WarningLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+      jToggleButton2.setText("Save Changes");
+      jToggleButton2.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            jToggleButton2ActionPerformed(evt);
+         }
+      });
+      getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, -1));
 
       jMenu2.setText("File");
 
@@ -219,114 +248,74 @@ public class GUI extends javax.swing.JFrame
 
       setJMenuBar(jMenuBar1);
 
-      javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-      getContentPane().setLayout(layout);
-      layout.setHorizontalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                  .addComponent(textField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                  .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-               .addGroup(layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel2)
-                     .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(18, 18, 18)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel1)
-                     .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
-               .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(jToggleButton1))
-            .addGap(18, 18, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 497, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(layout.createSequentialGroup()
-                  .addComponent(jLabel4)
-                  .addGap(141, 141, 141)
-                  .addComponent(jLabel3)))
-            .addContainerGap(73, Short.MAX_VALUE))
-      );
-      layout.setVerticalGroup(
-         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(layout.createSequentialGroup()
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                           .addGap(27, 27, 27)
-                           .addComponent(jLabel5))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                           .addContainerGap()
-                           .addComponent(jLabel4)))
-                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(jLabel3)))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jScrollPane3))
-               .addGroup(layout.createSequentialGroup()
-                  .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(94, 94, 94)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(jLabel2)
-                     .addComponent(jLabel1))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                     .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                  .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(18, 18, 18)
-                  .addComponent(jToggleButton1)
-                  .addGap(0, 0, Short.MAX_VALUE)))
-            .addContainerGap())
-      );
-
       pack();
    }// </editor-fold>//GEN-END:initComponents
 
-   private void textField1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_textField1ActionPerformed
-   {//GEN-HEADEREND:event_textField1ActionPerformed
+   private void SampleNumberInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SampleNumberInputActionPerformed
+   {//GEN-HEADEREND:event_SampleNumberInputActionPerformed
       
-   }//GEN-LAST:event_textField1ActionPerformed
+   }//GEN-LAST:event_SampleNumberInputActionPerformed
 
-   private void textField2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_textField2ActionPerformed
-   {//GEN-HEADEREND:event_textField2ActionPerformed
+   private void EndYearInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_EndYearInputActionPerformed
+   {//GEN-HEADEREND:event_EndYearInputActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_textField2ActionPerformed
+   }//GEN-LAST:event_EndYearInputActionPerformed
 
-   private void textField3ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_textField3ActionPerformed
-   {//GEN-HEADEREND:event_textField3ActionPerformed
+   private void StartYearInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_StartYearInputActionPerformed
+   {//GEN-HEADEREND:event_StartYearInputActionPerformed
       // TODO add your handling code here:
-   }//GEN-LAST:event_textField3ActionPerformed
+   }//GEN-LAST:event_StartYearInputActionPerformed
 
    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jToggleButton1ActionPerformed
    {//GEN-HEADEREND:event_jToggleButton1ActionPerformed
       // TODO add your handling code here:
       int Start, End, SampleNum;
-      jLabel3.setVisible(false);
-      if(!textField1.getText().isEmpty() && !textField3.getText().isEmpty() && !textField2.getText().isEmpty())
+      WarningLabel.setVisible(false);
+      if(!SampleNumberInput.getText().isEmpty() && 
+         !StartYearInput.getText().isEmpty() && 
+         !EndYearInput.getText().isEmpty())
       {
-         Start = Integer.parseInt(textField3.getText());
-         End = Integer.parseInt(textField2.getText());
-         SampleNum = Integer.parseInt(textField1.getText()); 
-         DefaultTableModel dtm = (DefaultTableModel) table1.getModel();
-         if((Start - End) >= 0 )
-            dtm.setRowCount((Start - End) + 1 );
+         if(SampleNumberInput.getText().matches("^-?\\d+$") && 
+            EndYearInput.getText().matches("^-?\\d+$") && 
+            StartYearInput.getText().matches("^-?\\d+$") && 
+            Integer.parseInt(StartYearInput.getText()) > 0 &&
+            Integer.parseInt(EndYearInput.getText()) > 0 &&
+            Integer.parseInt(SampleNumberInput.getText()) > 0)      
+         {   
+            Start = Integer.parseInt(StartYearInput.getText());
+            End = Integer.parseInt(EndYearInput.getText());
+            SampleNum = Integer.parseInt(SampleNumberInput.getText());  
+            DefaultTableModel dtm = (DefaultTableModel) InfoTable.getModel();
+            DefaultTableModel dtm2 = (DefaultTableModel) SampleTable.getModel();
+            if((End - Start) >= 0 )
+            {   
+              dtm.setRowCount((End - Start) + 1 );
+            }  
+            else 
+            {
+              WarningLabel.setVisible(true);
+              WarningLabel.setText("Cannot have starting year before ending year.");
+            }
+            InfoTable.setModel(dtm);
+            dtm2.setRowCount(SampleNum);
+            SampleTable.setModel(dtm2);
+            for (int x = 1; x <= SampleNum; x++)
+            {
+               String SampleId = "Tree " + x;
+               SampleTable.setValueAt(SampleId, x - 1, 0);
+            }
+            for (int x = Start; x <= End; x++)
+            {
+               InfoTable.setValueAt(x, x - Start, 0);
+               InfoTable.setValueAt('.', x - Start, 1);
+            }
+         }
          else 
          {
-            jLabel3.setVisible(true);
-            jLabel3.setText("Cannot have starting year before ending year");
+            WarningLabel.setText("Please enter valid inputs.");
+            WarningLabel.setVisible(true); 
          }
-         table1.setModel(dtm);
-      //table1.
-         DefaultTableModel dtm2 = (DefaultTableModel) SampleTable.getModel();
-         dtm2.setRowCount(SampleNum );
       }
-      SetupComboBox();
-      
    }//GEN-LAST:event_jToggleButton1ActionPerformed
 
    private void exitOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitOptionActionPerformed
@@ -376,11 +365,18 @@ public class GUI extends javax.swing.JFrame
          save(file);//not sure if this is good
    }//GEN-LAST:event_saveFileOptionActionPerformed
 
+<<<<<<< HEAD
    private void saveFileAsOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveFileAsOptionActionPerformed
    {//GEN-HEADEREND:event_saveFileAsOptionActionPerformed
       newFileOptionActionPerformed(evt);
       saveFileOptionActionPerformed(evt);
    }//GEN-LAST:event_saveFileAsOptionActionPerformed
+=======
+   private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jToggleButton2ActionPerformed
+   {//GEN-HEADEREND:event_jToggleButton2ActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_jToggleButton2ActionPerformed
+>>>>>>> refs/remotes/origin/master
    
    private void load(File f)
    {
@@ -393,8 +389,8 @@ public class GUI extends javax.swing.JFrame
    }
    void SetupComboBox()
    {
-      TableColumn  NewColumn = table1.getColumnModel().getColumn(2);
-      TableColumn  SavedColumn = table1.getColumnModel().getColumn(1);
+      TableColumn  NewColumn = InfoTable.getColumnModel().getColumn(2);
+      TableColumn  SavedColumn = InfoTable.getColumnModel().getColumn(1);
       JComboBox comboBox = new JComboBox();
       comboBox.addItem("{");
       comboBox.addItem("}");
@@ -472,12 +468,16 @@ public class GUI extends javax.swing.JFrame
    }
 
    // Variables declaration - do not modify//GEN-BEGIN:variables
+   private java.awt.TextField EndYearInput;
+   private javax.swing.JTable InfoTable;
+   private java.awt.TextField SampleNumberInput;
    private javax.swing.JTable SampleTable;
+   private java.awt.TextField StartYearInput;
+   private javax.swing.JLabel WarningLabel;
    private javax.swing.JMenuItem exitOption;
    private javax.swing.JFileChooser fileChoose;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel2;
-   private javax.swing.JLabel jLabel3;
    private javax.swing.JLabel jLabel4;
    private javax.swing.JLabel jLabel5;
    private javax.swing.JList jList2;
@@ -490,14 +490,11 @@ public class GUI extends javax.swing.JFrame
    private javax.swing.JScrollPane jScrollPane3;
    private javax.swing.JScrollPane jScrollPane4;
    private javax.swing.JToggleButton jToggleButton1;
+   private javax.swing.JToggleButton jToggleButton2;
    private java.awt.List list1;
    private javax.swing.JMenuItem loadFileOption;
    private javax.swing.JMenuItem newFileOption;
    private javax.swing.JMenuItem saveFileAsOption;
    private javax.swing.JMenuItem saveFileOption;
-   private javax.swing.JTable table1;
-   private java.awt.TextField textField1;
-   private java.awt.TextField textField2;
-   private java.awt.TextField textField3;
    // End of variables declaration//GEN-END:variables
 }
