@@ -5,12 +5,18 @@
  */
 
 package prototype1;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import spike.fileTest.fileOpenerTest;
 /**
 
  @author martinale
@@ -20,6 +26,10 @@ import javax.swing.table.TableColumn;
 public class GUI extends javax.swing.JFrame
 {
    File file;
+   FileReader fileReader;
+   BufferedReader bufferedReader;
+   FileWriter fileWriter;
+   BufferedWriter bufferedWriter;
    /**
     Creates new form GUI
     */
@@ -28,6 +38,8 @@ public class GUI extends javax.swing.JFrame
       initComponents();
       WarningLabel.setVisible(false);
       setResizable(false);
+      fileChoose.addChoosableFileFilter(new FHKFilter());
+      fileChoose.setAcceptAllFileFilterUsed(false);
       SetupComboBox();
    }
 
@@ -67,8 +79,8 @@ public class GUI extends javax.swing.JFrame
       newFileOption = new javax.swing.JMenuItem();
       loadFileOption = new javax.swing.JMenuItem();
       saveFileOption = new javax.swing.JMenuItem();
+      saveFileAsOption = new javax.swing.JMenuItem();
       exitOption = new javax.swing.JMenuItem();
-      jMenu3 = new javax.swing.JMenu();
 
       jMenu1.setText("jMenu1");
 
@@ -208,6 +220,16 @@ public class GUI extends javax.swing.JFrame
       });
       jMenu2.add(saveFileOption);
 
+      saveFileAsOption.setText("Save File As");
+      saveFileAsOption.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            saveFileAsOptionActionPerformed(evt);
+         }
+      });
+      jMenu2.add(saveFileAsOption);
+
       exitOption.setText("Exit");
       exitOption.addActionListener(new java.awt.event.ActionListener()
       {
@@ -219,9 +241,6 @@ public class GUI extends javax.swing.JFrame
       jMenu2.add(exitOption);
 
       jMenuBar1.add(jMenu2);
-
-      jMenu3.setText("Edit");
-      jMenuBar1.add(jMenu3);
 
       setJMenuBar(jMenuBar1);
 
@@ -305,8 +324,23 @@ public class GUI extends javax.swing.JFrame
       int returnVal = fileChoose.showSaveDialog(GUI.this);
       if(returnVal == JFileChooser.APPROVE_OPTION)
       {
-         file = fileChoose.getSelectedFile();  //this will save the .FHX file
-      }     
+         file = fileChoose.getSelectedFile(); //this will save the .FHX file path?
+         String file_name = file.toString();
+         if(!file_name.endsWith(".FHX"))
+            file_name += ".FHX";
+         file = new File(file_name);
+         if(!file.exists())
+         {
+            try {
+               file.createNewFile();//create the file in the folder selected
+         }
+         catch (IOException ex) {
+            System.out.println("Oops");
+         }
+         }
+         else
+            System.out.println("It exsists");//tell user the file exsits
+      }   
    }//GEN-LAST:event_newFileOptionActionPerformed
 
    private void loadFileOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loadFileOptionActionPerformed
@@ -316,25 +350,38 @@ public class GUI extends javax.swing.JFrame
       if(returnVal == JFileChooser.APPROVE_OPTION)
       {
          file = fileChoose.getSelectedFile();  //this will load the .FHX file
+         load(file);//load the table based on the file
       }
    }//GEN-LAST:event_loadFileOptionActionPerformed
 
    private void saveFileOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveFileOptionActionPerformed
    {//GEN-HEADEREND:event_saveFileOptionActionPerformed
-      int returnVal = fileChoose.showSaveDialog(GUI.this);
-      if(returnVal == JFileChooser.APPROVE_OPTION)
-      {
-         file = fileChoose.getSelectedFile();  //this will save the .FHX file
-         //FilenameFilter filter;
-         fileChoose.setFileFilter(new FileNameExtensionFilter("FHX files", "FHX")); // this is just testing file filtering
-      } 
+        //saves changes to the .FHX file based on the table
+       if (file != null)
+         save(file);//not sure if this is good
    }//GEN-LAST:event_saveFileOptionActionPerformed
+
+   private void saveFileAsOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveFileAsOptionActionPerformed
+   {//GEN-HEADEREND:event_saveFileAsOptionActionPerformed
+      newFileOptionActionPerformed(evt);
+      saveFileOptionActionPerformed(evt);
+   }//GEN-LAST:event_saveFileAsOptionActionPerformed
 
    private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jToggleButton2ActionPerformed
    {//GEN-HEADEREND:event_jToggleButton2ActionPerformed
       // TODO add your handling code here:
    }//GEN-LAST:event_jToggleButton2ActionPerformed
+
    
+   private void load(File f)
+   {
+      
+   }
+   
+   private void save(File f)
+   {
+      
+   }
    void SetupComboBox()
    {
       TableColumn  NewColumn = InfoTable.getColumnModel().getColumn(2);
@@ -431,7 +478,6 @@ public class GUI extends javax.swing.JFrame
    private javax.swing.JList jList2;
    private javax.swing.JMenu jMenu1;
    private javax.swing.JMenu jMenu2;
-   private javax.swing.JMenu jMenu3;
    private javax.swing.JMenuBar jMenuBar1;
    private javax.swing.JPopupMenu jPopupMenu1;
    private javax.swing.JScrollPane jScrollPane1;
@@ -443,6 +489,7 @@ public class GUI extends javax.swing.JFrame
    private java.awt.List list1;
    private javax.swing.JMenuItem loadFileOption;
    private javax.swing.JMenuItem newFileOption;
+   private javax.swing.JMenuItem saveFileAsOption;
    private javax.swing.JMenuItem saveFileOption;
    // End of variables declaration//GEN-END:variables
 }
