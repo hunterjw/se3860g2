@@ -1,0 +1,45 @@
+Name of site   : 
+Site code      : 
+Collection date: 
+Collectors     : 
+Crossdaters    : 
+Number samples : 
+Species name   : 
+Common name    : 
+Habitat name   : 
+Country        : 
+State          : 
+County         : 
+Park/Monument  : 
+National Forest: 
+Ranger district: 
+Township       : 
+Range          : 
+Section        : 
+Quarter section: 
+UTM easting    : 
+UTM northing   : 
+Latitude       : 
+Longitude      : 
+Topographic map: 
+Lowest elev    : 
+Highest elev   : 
+Slope          : 
+Aspect         : 
+Area sampled   : 
+Substrate type : 
+Begin comments BELOW this line:
+
+End comments ABOVE this line.
+
+FHX2 FORMAT
+2000 2 3
+this is row 0 of the IDs
+this is row 1 of the IDs
+this is row 2 of the IDs
+
+.. 2000
+.. 2001
+.. 2002
+.. 2003
+.. 2004
