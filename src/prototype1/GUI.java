@@ -64,8 +64,6 @@ public class GUI extends javax.swing.JFrame
       jLabel1 = new javax.swing.JLabel();
       jLabel2 = new javax.swing.JLabel();
       EndYearInput = new java.awt.TextField();
-      jScrollPane3 = new javax.swing.JScrollPane();
-      InfoTable = new javax.swing.JTable();
       jLabel4 = new javax.swing.JLabel();
       jLabel5 = new javax.swing.JLabel();
       StartYearInput = new java.awt.TextField();
@@ -74,6 +72,8 @@ public class GUI extends javax.swing.JFrame
       SampleTable = new javax.swing.JTable();
       WarningLabel = new javax.swing.JLabel();
       jToggleButton2 = new javax.swing.JToggleButton();
+      jScrollPane3 = new javax.swing.JScrollPane();
+      InfoTable = new javax.swing.JTable();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu2 = new javax.swing.JMenu();
       newFileOption = new javax.swing.JMenuItem();
@@ -119,27 +119,11 @@ public class GUI extends javax.swing.JFrame
       });
       getContentPane().add(EndYearInput, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 57, -1));
 
-      jScrollPane3.setName(""); // NOI18N
-
-      InfoTable.setModel(new javax.swing.table.DefaultTableModel(
-         new Object [][]
-         {
-
-         },
-         new String []
-         {
-            "Year", "Event ", "New Event "
-         }
-      ));
-      jScrollPane3.setViewportView(InfoTable);
-
-      getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 54, 497, 472));
-
       jLabel4.setText("Sample Information");
       getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 30, -1, -1));
 
       jLabel5.setText("Number of Samples");
-      getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+      getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
       StartYearInput.addActionListener(new java.awt.event.ActionListener()
       {
@@ -187,6 +171,22 @@ public class GUI extends javax.swing.JFrame
          }
       });
       getContentPane().add(jToggleButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 530, -1, -1));
+
+      jScrollPane3.setName(""); // NOI18N
+
+      InfoTable.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][]
+         {
+
+         },
+         new String []
+         {
+            "Year", "Event ", "New Event "
+         }
+      ));
+      jScrollPane3.setViewportView(InfoTable);
+
+      getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 100, -1, -1));
 
       jMenu2.setText("File");
 
