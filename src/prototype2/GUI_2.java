@@ -8,9 +8,11 @@ package prototype2;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -93,7 +95,7 @@ public class GUI_2 extends javax.swing.JFrame
       jLabel13 = new javax.swing.JLabel();
       jLabel14 = new javax.swing.JLabel();
       jLabel17 = new javax.swing.JLabel();
-      uwtmNorthing = new javax.swing.JTextField();
+      utmNorthing = new javax.swing.JTextField();
       jLabel18 = new javax.swing.JLabel();
       jLabel19 = new javax.swing.JLabel();
       county = new javax.swing.JTextField();
@@ -109,7 +111,7 @@ public class GUI_2 extends javax.swing.JFrame
       jLabel26 = new javax.swing.JLabel();
       section = new javax.swing.JTextField();
       jLabel27 = new javax.swing.JLabel();
-      quaterSection = new javax.swing.JTextField();
+      quarterSection = new javax.swing.JTextField();
       jLabel28 = new javax.swing.JLabel();
       utmEasting = new javax.swing.JTextField();
       highestElevation = new javax.swing.JTextField();
@@ -309,7 +311,7 @@ public class GUI_2 extends javax.swing.JFrame
 
       jLabel14.setText("State");
 
-      jLabel17.setText("Quater Section");
+      jLabel17.setText("Quarter Section");
 
       jLabel18.setText("UTM Easting");
 
@@ -400,7 +402,7 @@ public class GUI_2 extends javax.swing.JFrame
                         .addComponent(jLabel19))
                      .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                      .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(uwtmNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(utmNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel2Layout.createSequentialGroup()
                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                               .addComponent(nationalForest, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -410,7 +412,7 @@ public class GUI_2 extends javax.swing.JFrame
                               .addComponent(township, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addComponent(range, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addComponent(section, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                              .addComponent(quaterSection, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                              .addComponent(quarterSection, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addComponent(utmEasting, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                            .addGap(18, 18, 18)
                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -435,7 +437,7 @@ public class GUI_2 extends javax.swing.JFrame
                               .addComponent(areaSampled, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                               .addComponent(substrateType, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                   .addComponent(jLabel15)))
-            .addContainerGap(60, Short.MAX_VALUE))
+            .addContainerGap(59, Short.MAX_VALUE))
       );
       jPanel2Layout.setVerticalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,7 +516,7 @@ public class GUI_2 extends javax.swing.JFrame
                            .addComponent(jLabel28))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                           .addComponent(quaterSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(quarterSection, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                            .addComponent(jLabel17))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -558,7 +560,7 @@ public class GUI_2 extends javax.swing.JFrame
                            .addComponent(jLabel22))))
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                     .addComponent(uwtmNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(utmNorthing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                      .addComponent(jLabel19))))
             .addGap(18, 18, 18)
             .addComponent(jLabel15)
@@ -765,6 +767,8 @@ public class GUI_2 extends javax.swing.JFrame
    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
    {//GEN-HEADEREND:event_jButton2ActionPerformed
       // TODO add your handling code here:
+       newFileOptionActionPerformed(evt);
+      saveFileOptionActionPerformed(evt);
    }//GEN-LAST:event_jButton2ActionPerformed
 
    private void load(File f)
@@ -774,7 +778,76 @@ public class GUI_2 extends javax.swing.JFrame
    
    private void save(File f)
    {
-      
+      String input = "";
+
+      try
+      {
+         PrintStream outF = new PrintStream(new FileOutputStream("test.FHX"));
+
+         outF.println("Name of site   : " + siteName.getText());
+         outF.println("Site code      : " + siteCode.getText());
+         outF.println("Collection date: " + collectionDate.getText());
+         outF.println("Collectors     : " + collectors.getText());
+         outF.println("Crossdaters    : " + crossdaters.getText());
+         outF.println("Number samples : " + SampleNumberInput.getText());
+         outF.println("Species name   : " + speciesName.getText());
+         outF.println("Common name    : " + commonName.getText());
+         outF.println("Habitat name   : " + habitatType.getText());
+         outF.println("Country        : " + country.getText());
+         outF.println("State          : " + state.getText());
+         outF.println("County         : " + county.getText());
+         outF.println("Park/Monument  : " + parkMonument.getText());
+         outF.println("National Forest: " + nationalForest.getText());
+         outF.println("Ranger district: " + rangerDistrict.getText());
+         outF.println("Township       : " + township.getText());
+         outF.println("Range          : " + range.getText());
+         outF.println("Section        : " + section.getText());
+         outF.println("Quarter section: " + quarterSection.getText());
+         outF.println("UTM easting    : " + utmEasting.getText());
+         outF.println("UTM northing   : " + utmNorthing.getText());
+         outF.println("Latitude       : " + latitude.getText());
+         outF.println("Longitude      : " + longitude.getText());
+         outF.println("Topographic map: " + topographicMap.getText());
+         outF.println("Lowest elev    : " + lowestElevation.getText());
+         outF.println("Highest elev   : " + highestElevation.getText());
+         outF.println("Slope          : " + slope.getText());
+         outF.println("Aspect         : " + aspect.getText());
+         outF.println("Area sampled   : " + areaSampled.getText());
+         outF.println("Substrate type : " + substrateType.getText());
+         outF.println("Begin comments BELOW this line:" + '\n' + comments.getText());
+
+         outF.println("End comments ABOVE this line.");
+         outF.println("");
+         outF.println("FHX2 FORMAT");
+         int ID = 5;
+         outF.println(StartYearInput.getText() + " " + 
+               SampleNumberInput.getText() + " " + ID);
+
+         for (int i = 0; i < ID; i++)
+         //inside is replaced with a string created of the 
+         {
+            outF.println("this is row " + i + " of the IDs");
+         }
+
+         outF.println("");
+         int yearsRun  = Integer.parseInt(EndYearInput.getText()) + 1 - 
+               Integer.parseInt(StartYearInput.getText());
+         for (int i = 0; i < yearsRun; i++)
+         {
+            for (int j = 0; j < Integer.parseInt(SampleNumberInput.getText());
+                  j++)
+            {
+               outF.print("."); //this will be a character read from the table
+            }
+            outF.println(" " + (Integer.parseInt(StartYearInput.getText()) 
+                  + i));
+         }
+      }
+      catch (IOException ex)
+      {
+         System.out.println("file error: " + ex);
+
+      }
    }
    void SetupComboBox()
    {
@@ -925,7 +998,7 @@ public class GUI_2 extends javax.swing.JFrame
    private javax.swing.JTextField nationalForest;
    private javax.swing.JMenuItem newFileOption;
    private javax.swing.JTextField parkMonument;
-   private javax.swing.JTextField quaterSection;
+   private javax.swing.JTextField quarterSection;
    private javax.swing.JTextField range;
    private javax.swing.JTextField rangerDistrict;
    private javax.swing.JMenuItem saveFileAsOption;
@@ -940,6 +1013,6 @@ public class GUI_2 extends javax.swing.JFrame
    private javax.swing.JTextField topographicMap;
    private javax.swing.JTextField township;
    private javax.swing.JTextField utmEasting;
-   private javax.swing.JTextField uwtmNorthing;
+   private javax.swing.JTextField utmNorthing;
    // End of variables declaration//GEN-END:variables
 }
