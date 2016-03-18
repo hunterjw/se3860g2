@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package prototype2;
+package spike.input;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.nio.file.Files;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
@@ -26,13 +28,18 @@ import javax.swing.table.TableColumn;
  */
 public class GUI_2 extends javax.swing.JFrame
 {
-
+   private enum Numbers { SITE_NAME, SITE_CODE, COLLECTION_D, COLLECTORS,
+   CROSSDATERS, NUM_SAMPLES, SPECIES_NAME, COMMON_NAME, HABITAT_TYPE, COUNTRY,
+   STATE, COUNTY, PARK_MONUM, NATION_FOREST, RANGER_DIST, TOWNSHIP, RANGE,
+   SECTION, QUART_SECTION, UTM_EAS, UTM_NOR, LATITUDE, LONGITUDE, TOPO_MAP,
+   LOWEST_ELE, HIGEST_ELE, SLOPE, ASPECT, AREA_SAMP, SUBSTR_TYPE};
    File file;
    FileReader fileReader;
    BufferedReader bufferedReader;
    FileWriter fileWriter;
    BufferedWriter bufferedWriter;
    private JFileChooser fileChoose;
+   private int HEADER_LINES = 30;
    /**
     Creates new form GUI_2
     */
@@ -773,6 +780,68 @@ public class GUI_2 extends javax.swing.JFrame
 
    private void load(File f)
    {
+      try
+      {
+         //FileReader fileRead = new FileReader(f);
+         //BufferedReader buffRead = new BufferedReader(fileRead);
+         String splitStr;
+         String temp[];
+         String toKeep;
+         List<String> list;
+         list = Files.readAllLines(f.toPath());
+         for(int i = 0; i < HEADER_LINES; i++)
+         {
+            toKeep = "";
+            splitStr = list.get(i);
+            temp = splitStr.split(": ");
+            for(int j = 1; j < temp.length; j++)
+               toKeep += temp[j];
+            list.set(i, toKeep);
+         }         
+         siteName.setText(list.get(Numbers.SITE_NAME.ordinal()));
+         siteCode.setText(list.get(Numbers.SITE_CODE.ordinal()));
+         collectionDate.setText(list.get(Numbers.COLLECTION_D.ordinal()));
+         collectors.setText(list.get(Numbers.COLLECTORS.ordinal()));
+         crossdaters.setText(list.get(Numbers.CROSSDATERS.ordinal()));
+         SampleNumberInput.setText(list.get(Numbers.NUM_SAMPLES.ordinal()));
+         speciesName.setText(list.get(Numbers.SPECIES_NAME.ordinal()));
+         commonName.setText(list.get(Numbers.COMMON_NAME.ordinal()));
+         habitatType.setText(list.get(Numbers.HABITAT_TYPE.ordinal()));
+         country.setText(list.get(Numbers.COUNTRY.ordinal()));
+         state.setText(list.get(Numbers.STATE.ordinal()));
+         county.setText(list.get(Numbers.COUNTY.ordinal()));
+         parkMonument.setText(list.get(Numbers.PARK_MONUM.ordinal()));
+         nationalForest.setText(list.get(Numbers.NATION_FOREST.ordinal()));
+         rangerDistrict.setText(list.get(Numbers.RANGER_DIST.ordinal()));
+         township.setText(list.get(Numbers.TOWNSHIP.ordinal()));
+         range.setText(list.get(Numbers.RANGE.ordinal()));
+         section.setText(list.get(Numbers.SECTION.ordinal()));
+         quarterSection.setText(list.get(Numbers.QUART_SECTION.ordinal()));
+         utmEasting.setText(list.get(Numbers.UTM_EAS.ordinal()));
+         utmNorthing.setText(list.get(Numbers.UTM_NOR.ordinal()));
+         latitude.setText(list.get(Numbers.LATITUDE.ordinal()));
+         longitude.setText(list.get(Numbers.LONGITUDE.ordinal()));
+         topographicMap.setText(list.get(Numbers.TOPO_MAP.ordinal()));
+         lowestElevation.setText(list.get(Numbers.LOWEST_ELE.ordinal()));
+         highestElevation.setText(list.get(Numbers.HIGEST_ELE.ordinal()));
+         slope.setText(list.get(Numbers.SLOPE.ordinal()));
+         aspect.setText(list.get(Numbers.ASPECT.ordinal()));
+         areaSampled.setText(list.get(Numbers.AREA_SAMP.ordinal()));
+         substrateType.setText(list.get(Numbers.SUBSTR_TYPE.ordinal()));  
+         
+         int start = 31;
+         String comment = "";
+         while(!list.get(start).equals("End comments ABOVE this line."))
+         {
+            comment += (list.get(start) + "\n");
+            start++;
+         }
+         comments.setText(comment);
+      }
+      catch (Exception e)
+      {
+         System.out.println("Oh no");
+      }
       
    }
    
@@ -916,7 +985,6 @@ public class GUI_2 extends javax.swing.JFrame
       {
          java.util.logging.Logger.getLogger(GUI_2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
       }
-        //</editor-fold>
         //</editor-fold>
 
       /* Create and display the form */
