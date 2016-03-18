@@ -58,21 +58,6 @@ public class GUI_2 extends javax.swing.JFrame
    {
 
       jTabbedPane1 = new javax.swing.JTabbedPane();
-      jPanel1 = new javax.swing.JPanel();
-      jLabel5 = new javax.swing.JLabel();
-      WarningLabel = new javax.swing.JLabel();
-      SampleNumberInput = new java.awt.TextField();
-      jLabel4 = new javax.swing.JLabel();
-      jScrollPane3 = new javax.swing.JScrollPane();
-      InfoTable = new javax.swing.JTable();
-      StartYearInput = new java.awt.TextField();
-      jLabel2 = new javax.swing.JLabel();
-      jLabel1 = new javax.swing.JLabel();
-      EndYearInput = new java.awt.TextField();
-      jScrollPane4 = new javax.swing.JScrollPane();
-      SampleTable = new javax.swing.JTable();
-      jButton1 = new javax.swing.JButton();
-      jButton2 = new javax.swing.JButton();
       jPanel2 = new javax.swing.JPanel();
       siteName = new javax.swing.JTextField();
       siteCode = new javax.swing.JTextField();
@@ -135,6 +120,23 @@ public class GUI_2 extends javax.swing.JFrame
       jLabel15 = new javax.swing.JLabel();
       jScrollPane1 = new javax.swing.JScrollPane();
       comments = new javax.swing.JTextArea();
+      jPanel1 = new javax.swing.JPanel();
+      jLabel5 = new javax.swing.JLabel();
+      WarningLabel = new javax.swing.JLabel();
+      SampleNumberInput = new java.awt.TextField();
+      jLabel4 = new javax.swing.JLabel();
+      jScrollPane3 = new javax.swing.JScrollPane();
+      InfoTable = new javax.swing.JTable();
+      StartYearInput = new java.awt.TextField();
+      jLabel2 = new javax.swing.JLabel();
+      jLabel1 = new javax.swing.JLabel();
+      EndYearInput = new java.awt.TextField();
+      jScrollPane4 = new javax.swing.JScrollPane();
+      SampleTable = new javax.swing.JTable();
+      jButton1 = new javax.swing.JButton();
+      jButton2 = new javax.swing.JButton();
+      jLabel16 = new javax.swing.JLabel();
+      sampleIDLength = new javax.swing.JTextField();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu2 = new javax.swing.JMenu();
       newFileOption = new javax.swing.JMenuItem();
@@ -144,152 +146,6 @@ public class GUI_2 extends javax.swing.JFrame
       exitOption = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-      jLabel5.setText("Number of Samples");
-
-      WarningLabel.setText("ERROR");
-      WarningLabel.setEnabled(false);
-
-      SampleNumberInput.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            SampleNumberInputActionPerformed(evt);
-         }
-      });
-
-      jLabel4.setText("Sample Information");
-
-      jScrollPane3.setName(""); // NOI18N
-
-      InfoTable.setModel(new javax.swing.table.DefaultTableModel(
-         new Object [][]
-         {
-
-         },
-         new String []
-         {
-            "Year", "Event ", "New Event "
-         }
-      ));
-      jScrollPane3.setViewportView(InfoTable);
-
-      StartYearInput.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            StartYearInputActionPerformed(evt);
-         }
-      });
-
-      jLabel2.setText("Starting Year");
-
-      jLabel1.setText("Ending Year");
-
-      EndYearInput.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            EndYearInputActionPerformed(evt);
-         }
-      });
-
-      SampleTable.setModel(new javax.swing.table.DefaultTableModel(
-         new Object [][]
-         {
-
-         },
-         new String []
-         {
-            "Sample Name"
-         }
-      ));
-      jScrollPane4.setViewportView(SampleTable);
-
-      jButton1.setText("Set Up");
-      jButton1.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            jButton1ActionPerformed(evt);
-         }
-      });
-
-      jButton2.setText("Save Changes");
-      jButton2.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            jButton2ActionPerformed(evt);
-         }
-      });
-
-      javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-      jPanel1.setLayout(jPanel1Layout);
-      jPanel1Layout.setHorizontalGroup(
-         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel5)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                  .addGap(149, 149, 149)
-                  .addComponent(jLabel4))
-               .addComponent(WarningLabel)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1))
-                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(StartYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)))
-                  .addGap(17, 17, 17)
-                  .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap(30, Short.MAX_VALUE))
-      );
-      jPanel1Layout.setVerticalGroup(
-         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-         .addGroup(jPanel1Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jLabel5)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(6, 6, 6)
-                  .addComponent(jLabel4)))
-            .addGap(16, 16, 16)
-            .addComponent(WarningLabel)
-            .addGap(26, 26, 26)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(27, 27, 27)
-                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(jLabel2)
-                     .addComponent(jLabel1))
-                  .addGap(9, 9, 9)
-                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                     .addComponent(StartYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(11, 11, 11)
-                  .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jButton1)
-               .addComponent(jButton2))
-            .addContainerGap(25, Short.MAX_VALUE))
-      );
-
-      jTabbedPane1.addTab("Sample Data", jPanel1);
 
       jLabel3.setText("Site Name");
 
@@ -571,6 +427,161 @@ public class GUI_2 extends javax.swing.JFrame
 
       jTabbedPane1.addTab("File Meta Data", jPanel2);
 
+      jLabel5.setText("Number of Samples");
+
+      WarningLabel.setText("ERROR");
+      WarningLabel.setEnabled(false);
+
+      SampleNumberInput.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            SampleNumberInputActionPerformed(evt);
+         }
+      });
+
+      jLabel4.setText("Sample Information");
+
+      jScrollPane3.setName(""); // NOI18N
+
+      InfoTable.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][]
+         {
+
+         },
+         new String []
+         {
+            "Year", "Event ", "New Event "
+         }
+      ));
+      jScrollPane3.setViewportView(InfoTable);
+
+      StartYearInput.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            StartYearInputActionPerformed(evt);
+         }
+      });
+
+      jLabel2.setText("Starting Year");
+
+      jLabel1.setText("Ending Year");
+
+      EndYearInput.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            EndYearInputActionPerformed(evt);
+         }
+      });
+
+      SampleTable.setModel(new javax.swing.table.DefaultTableModel(
+         new Object [][]
+         {
+
+         },
+         new String []
+         {
+            "Sample Name"
+         }
+      ));
+      jScrollPane4.setViewportView(SampleTable);
+
+      jButton1.setText("Set Up");
+      jButton1.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            jButton1ActionPerformed(evt);
+         }
+      });
+
+      jButton2.setText("Save Changes");
+      jButton2.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            jButton2ActionPerformed(evt);
+         }
+      });
+
+      jLabel16.setText("Sample ID Length");
+
+      javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+      jPanel1.setLayout(jPanel1Layout);
+      jPanel1Layout.setHorizontalGroup(
+         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jLabel5)
+               .addComponent(WarningLabel)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2))
+                     .addComponent(jLabel16)
+                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(jLabel2)
+                           .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                           .addComponent(StartYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                           .addComponent(jLabel1)))
+                     .addComponent(sampleIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(35, 35, 35)
+                  .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(149, 149, 149)
+                  .addComponent(jLabel4)))
+            .addContainerGap(12, Short.MAX_VALUE))
+      );
+      jPanel1Layout.setVerticalGroup(
+         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+         .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jLabel5)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(6, 6, 6)
+                  .addComponent(jLabel4)))
+            .addGap(16, 16, 16)
+            .addComponent(WarningLabel)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addGap(26, 26, 26)
+                  .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                     .addComponent(jLabel2)
+                     .addComponent(jLabel1))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(StartYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                  .addComponent(jLabel16)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(sampleIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                  .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jButton1)
+               .addComponent(jButton2))
+            .addContainerGap(25, Short.MAX_VALUE))
+      );
+
+      jTabbedPane1.addTab("Sample Data", jPanel1);
+
       jMenu2.setText("File");
 
       newFileOption.setText("New File");
@@ -748,7 +759,7 @@ public class GUI_2 extends javax.swing.JFrame
             SampleTable.setModel(dtm2);
             for (int x = 1; x <= SampleNum; x++)
             {
-               String SampleId = "Tree " + x;
+               String SampleId = "T" + x;
                SampleTable.setValueAt(SampleId, x - 1, 0);
             }
             for (int x = Start; x <= End; x++)
@@ -819,14 +830,21 @@ public class GUI_2 extends javax.swing.JFrame
          outF.println("End comments ABOVE this line.");
          outF.println("");
          outF.println("FHX2 FORMAT");
-         int ID = 5;
+         int idLen = Integer.parseInt(sampleIDLength.getText());
          outF.println(StartYearInput.getText() + " " + 
-               SampleNumberInput.getText() + " " + ID);
+               SampleNumberInput.getText() + " " + idLen);
 
-         for (int i = 0; i < ID; i++)
+         for (int i = 0; i < idLen; i++)
          //inside is replaced with a string created of the 
          {
-            outF.println("this is row " + i + " of the IDs");
+            for (int j = 0; j < SampleTable.getRowCount(); j++)
+            {
+                  if (i < SampleTable.getValueAt(j, 0).toString().length() - 1)
+                     outF.print(SampleTable.getValueAt(j, 0).toString().charAt(i));
+                  else
+                     outF.print(" ");
+            }
+            outF.println("");
          }
 
          outF.println("");
@@ -846,7 +864,10 @@ public class GUI_2 extends javax.swing.JFrame
       catch (IOException ex)
       {
          System.out.println("file error: " + ex);
-
+      }
+      catch (Exception ex)
+      {
+         System.out.println("error: " + ex);
       }
    }
    void SetupComboBox()
@@ -956,6 +977,7 @@ public class GUI_2 extends javax.swing.JFrame
    private javax.swing.JLabel jLabel13;
    private javax.swing.JLabel jLabel14;
    private javax.swing.JLabel jLabel15;
+   private javax.swing.JLabel jLabel16;
    private javax.swing.JLabel jLabel17;
    private javax.swing.JLabel jLabel18;
    private javax.swing.JLabel jLabel19;
@@ -1001,6 +1023,7 @@ public class GUI_2 extends javax.swing.JFrame
    private javax.swing.JTextField quarterSection;
    private javax.swing.JTextField range;
    private javax.swing.JTextField rangerDistrict;
+   private javax.swing.JTextField sampleIDLength;
    private javax.swing.JMenuItem saveFileAsOption;
    private javax.swing.JMenuItem saveFileOption;
    private javax.swing.JTextField section;
