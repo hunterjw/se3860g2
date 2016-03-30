@@ -498,6 +498,7 @@ public class GUI_2 extends javax.swing.JFrame
       });
 
       jButton2.setText("Save Changes");
+      jButton2.setEnabled(false);
       jButton2.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -528,11 +529,11 @@ public class GUI_2 extends javax.swing.JFrame
                      .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                            .addComponent(jLabel2)
-                           .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                           .addComponent(StartYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                           .addComponent(StartYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                           .addComponent(jLabel1)))
+                           .addComponent(jLabel1)
+                           .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                      .addComponent(sampleIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                   .addGap(35, 35, 35)
                   .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -552,14 +553,14 @@ public class GUI_2 extends javax.swing.JFrame
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(6, 6, 6)
                   .addComponent(jLabel4)))
-            .addGap(16, 16, 16)
+            .addGap(4, 4, 4)
             .addComponent(WarningLabel)
+            .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(26, 26, 26)
+                  .addGap(20, 20, 20)
                   .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                      .addComponent(jLabel2)
                      .addComponent(jLabel1))
@@ -740,6 +741,7 @@ public class GUI_2 extends javax.swing.JFrame
             Integer.parseInt(EndYearInput.getText()) > 0 &&
             Integer.parseInt(SampleNumberInput.getText()) > 0)
          {
+            jButton2.setEnabled(true);
             Start = Integer.parseInt(StartYearInput.getText());
             End = Integer.parseInt(EndYearInput.getText());
             SampleNum = Integer.parseInt(SampleNumberInput.getText());
@@ -752,7 +754,7 @@ public class GUI_2 extends javax.swing.JFrame
             else
             {
                WarningLabel.setVisible(true);
-               WarningLabel.setText("Cannot have starting year before ending year.");
+               WarningLabel.setText("Cannot have ending year before starting year.");
             }
             InfoTable.setModel(dtm);
             dtm2.setRowCount(SampleNum);
@@ -839,7 +841,7 @@ public class GUI_2 extends javax.swing.JFrame
          {
             for (int j = 0; j < SampleTable.getRowCount(); j++)
             {
-                  if (i < SampleTable.getValueAt(j, 0).toString().length() - 1)
+                  if (i < SampleTable.getValueAt(j, 0).toString().length())
                      outF.print(SampleTable.getValueAt(j, 0).toString().charAt(i));
                   else
                      outF.print(" ");
