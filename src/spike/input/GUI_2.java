@@ -815,6 +815,21 @@ public class GUI_2 extends javax.swing.JFrame
          //Data load
          start = dataFill(list, start);
          //fill table
+         int SampleNum = Integer.parseInt(SampleNumberInput.getText());
+         int yearSpan = Integer.parseInt(EndYearInput.getText()) - 
+                 Integer.parseInt(StartYearInput.getText()) + 1;
+         char sampleValue[][] = new char[SampleNum][yearSpan];
+         for(int i = 0; i < list.size(); i++)
+         {
+             splitStr = list.get(start);
+             temp = splitStr.split(" ");
+             for (int j = 0; j < SampleNum; j++)
+             {
+                 sampleValue[j][i] = temp[0].charAt(j);
+             }
+             InfoTable.setValueAt(temp[1], i, 0);
+         }
+         
       }
       catch (Exception e)
       {
