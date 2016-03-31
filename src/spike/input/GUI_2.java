@@ -19,6 +19,8 @@ import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -46,6 +48,7 @@ public class GUI_2 extends javax.swing.JFrame
    private int CHAR_LENGTH = 2;
    private int INC_START = 1;
    private Sample samples[];
+   private JTable infoTables[];
    /**
     Creates new form GUI_2
     */
@@ -817,18 +820,41 @@ public class GUI_2 extends javax.swing.JFrame
              temp = splitStr.split(" ");
              for (int j = 0; j < SampleNum; j++)
              {
-                 sampleValue[i][j] = temp[0].charAt(j);
+                 sampleValue[j][i] = temp[0].charAt(j);
              }
              start++;
          }
          samples = new Sample[SampleNum];
-         
+         infoTables = new JTable[SampleNum];
+         DefaultTableModel dtm = (DefaultTableModel) InfoTable.getModel();
+         dtm.setRowCount(yearSpan);
+         InfoTable.setModel(dtm);
          for(int i = 0; i < SampleNum; i++)
          {
              samples[i] = new Sample(yearSpan, 
-                     (SampleTable.getValueAt(0, i)).toString());
+                     (SampleTable.getValueAt(i, 0)).toString());
              samples[i].setOldData(sampleValue[i]);
+             samples[i].setNewData(sampleValue[i]);
+             JTable test = InfoTable;
+             infoTables[i] = test;
          }
+         
+         char oldValue[];
+         char newValue[];
+         
+         for(int i = 0; i < SampleNum; i++)
+         {
+             int charCounter = 0;
+             for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++)
+             {
+                 
+                 oldValue = samples[i].getOldData();
+                 newValue = samples[i].getNewData();
+                 infoTables[i].setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
+                 infoTables[i].setValueAt(oldValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 1);
+                 infoTables[i].setValueAt(newValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 2);
+             }
+          }
 
       }
       catch (Exception e)
