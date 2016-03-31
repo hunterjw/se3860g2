@@ -44,7 +44,8 @@ public class GUI_2 extends javax.swing.JFrame
    private int AFTER_HEADER = 31;
    private int FORMAT_INCR = 3;
    private int CHAR_LENGTH = 2;
-   private int INC_START = 2;
+   private int INC_START = 1;
+   private Sample samples[];
    /**
     Creates new form GUI_2
     */
@@ -792,7 +793,6 @@ public class GUI_2 extends javax.swing.JFrame
          String toKeep;
          List<String> list;
          list = Files.readAllLines(f.toPath());
-         //Header load
          for(int i = 0; i < HEADER_LINES; i++)
          {
             toKeep = "";
@@ -803,37 +803,37 @@ public class GUI_2 extends javax.swing.JFrame
             list.set(i, toKeep);
          }         
          headerFill(list);        
-         //comments
          int start = AFTER_HEADER;
-         String comment = "";
-         while(!list.get(start).equals("End comments ABOVE this line."))
-         {
-            comment += (list.get(start) + "\n");
-            start++;
-         }
-         comments.setText(comment);
-         //Data load
+         start = commentFill(list, start);
          start = dataFill(list, start);
          //fill table
          int SampleNum = Integer.parseInt(SampleNumberInput.getText());
          int yearSpan = Integer.parseInt(EndYearInput.getText()) - 
                  Integer.parseInt(StartYearInput.getText()) + 1;
          char sampleValue[][] = new char[SampleNum][yearSpan];
-         for(int i = 0; i < list.size(); i++)
+         for(int i = 0; i < yearSpan; i++)
          {
              splitStr = list.get(start);
              temp = splitStr.split(" ");
              for (int j = 0; j < SampleNum; j++)
              {
-                 sampleValue[j][i] = temp[0].charAt(j);
+                 sampleValue[i][j] = temp[0].charAt(j);
              }
-             InfoTable.setValueAt(temp[1], i, 0);
+             start++;
          }
+         samples = new Sample[SampleNum];
          
+         for(int i = 0; i < SampleNum; i++)
+         {
+             samples[i] = new Sample(yearSpan, 
+                     (SampleTable.getValueAt(0, i)).toString());
+             samples[i].setOldData(sampleValue[i]);
+         }
+
       }
       catch (Exception e)
       {
-         System.out.println("Oh no");
+         System.out.println("Oh no " + e.toString());
       }
       
    }
@@ -871,7 +871,17 @@ public class GUI_2 extends javax.swing.JFrame
        areaSampled.setText(list.get(Numbers.AREA_SAMP.ordinal()));
        substrateType.setText(list.get(Numbers.SUBSTR_TYPE.ordinal()));       
    }
-   
+   private int commentFill(List<String> list, int start)
+   {
+       String comment = "";
+       while(!list.get(start).equals("End comments ABOVE this line."))
+       {
+          comment += (list.get(start) + "\n");
+          start++;
+       }
+       comments.setText(comment);
+       return start;
+   }
    private int dataFill(List<String> list, int start)
    {
        start += FORMAT_INCR;
@@ -884,7 +894,7 @@ public class GUI_2 extends javax.swing.JFrame
        dtm2.setRowCount(SampleNum);
        SampleTable.setModel(dtm2);
        start++;
-       List<String> sampleNameList = new ArrayList<String>();
+       List<String> sampleNameList = new ArrayList<>();
        for(int i = 0; i < SampleNum; i++)
            sampleNameList.add("");
        String newName = "";
