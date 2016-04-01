@@ -462,6 +462,14 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       WarningLabel.setText("ERROR");
       WarningLabel.setEnabled(false);
 
+      SampleNumberInput.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            SampleNumberInputActionPerformed(evt);
+         }
+      });
+
       jLabel4.setText("Sample Information");
 
       jScrollPane3.setName(""); // NOI18N
@@ -478,9 +486,25 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       ));
       jScrollPane3.setViewportView(InfoTable);
 
+      StartYearInput.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            StartYearInputActionPerformed(evt);
+         }
+      });
+
       jLabel2.setText("Starting Year");
 
       jLabel1.setText("Ending Year");
+
+      EndYearInput.addActionListener(new java.awt.event.ActionListener()
+      {
+         public void actionPerformed(java.awt.event.ActionEvent evt)
+         {
+            EndYearInputActionPerformed(evt);
+         }
+      });
 
       SampleTable.setModel(new javax.swing.table.DefaultTableModel(
          new Object [][]
@@ -561,6 +585,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
                   .addComponent(jLabel4)))
             .addGap(4, 4, 4)
             .addComponent(WarningLabel)
+            .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(20, 20, 20)
@@ -714,6 +739,21 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    {//GEN-HEADEREND:event_exitOptionActionPerformed
       System.exit(0);
    }//GEN-LAST:event_exitOptionActionPerformed
+
+   private void EndYearInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_EndYearInputActionPerformed
+   {//GEN-HEADEREND:event_EndYearInputActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_EndYearInputActionPerformed
+
+   private void StartYearInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_StartYearInputActionPerformed
+   {//GEN-HEADEREND:event_StartYearInputActionPerformed
+      // TODO add your handling code here:
+   }//GEN-LAST:event_StartYearInputActionPerformed
+
+   private void SampleNumberInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SampleNumberInputActionPerformed
+   {//GEN-HEADEREND:event_SampleNumberInputActionPerformed
+
+   }//GEN-LAST:event_SampleNumberInputActionPerformed
 
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
    {//GEN-HEADEREND:event_jButton1ActionPerformed
