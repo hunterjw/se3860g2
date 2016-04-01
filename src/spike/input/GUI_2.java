@@ -21,6 +21,8 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -29,7 +31,7 @@ import javax.swing.table.TableColumn;
 
  @author John
  */
-public class GUI_2 extends javax.swing.JFrame
+public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
 {
    private enum Numbers { SITE_NAME, SITE_CODE, COLLECTION_D, COLLECTORS,
    CROSSDATERS, NUM_SAMPLES, SPECIES_NAME, COMMON_NAME, HABITAT_TYPE, COUNTRY,
@@ -61,6 +63,27 @@ public class GUI_2 extends javax.swing.JFrame
       fileChoose.addChoosableFileFilter(new FHKFilter());
       fileChoose.setAcceptAllFileFilterUsed(false);
       SetupComboBox();
+      SampleTable.getSelectionModel().addListSelectionListener((ListSelectionListener)this);
+   }
+   
+   public void valueChanged(ListSelectionEvent event) 
+   {
+       char oldValue[];
+       char newValue[];
+       int charCounter = 0;
+       for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++) 
+       {
+
+           oldValue = samples[SampleTable.getSelectedRow()].getOldData();
+           newValue = samples[SampleTable.getSelectedRow()].getNewData();
+           InfoTable.setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
+           InfoTable.setValueAt(oldValue[charCounter], 
+                   x - Integer.parseInt(StartYearInput.getText()), 1);
+           InfoTable.setValueAt(newValue[charCounter], 
+                   x - Integer.parseInt(StartYearInput.getText()), 2);
+           charCounter++;
+       }
+
    }
 
    /**
@@ -787,6 +810,10 @@ public class GUI_2 extends javax.swing.JFrame
       saveFileOptionActionPerformed(evt);
    }//GEN-LAST:event_jButton2ActionPerformed
 
+   private void testingThings()
+   {
+       
+   }
    private void load(File f)
    {
       try
@@ -825,7 +852,7 @@ public class GUI_2 extends javax.swing.JFrame
              start++;
          }
          samples = new Sample[SampleNum];
-         infoTables = new JTable[SampleNum];
+         //infoTables = new JTable[SampleNum];
          DefaultTableModel dtm = (DefaultTableModel) InfoTable.getModel();
          dtm.setRowCount(yearSpan);
          InfoTable.setModel(dtm);
@@ -835,27 +862,25 @@ public class GUI_2 extends javax.swing.JFrame
                      (SampleTable.getValueAt(i, 0)).toString());
              samples[i].setOldData(sampleValue[i]);
              samples[i].setNewData(sampleValue[i]);
-             JTable test = InfoTable;
-             infoTables[i] = test;
+             //JTable test = InfoTable;
+             //infoTables[i] = test;
          }
          
-         char oldValue[];
-         char newValue[];
-         
-         for(int i = 0; i < SampleNum; i++)
-         {
-             int charCounter = 0;
-             for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++)
-             {
+         //char oldValue[];
+         //char newValue[];
+         //for(int i = 0; i < SampleNum; i++)
+         //{
+             //int charCounter = 0;
+             //for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++)
+             //{
                  
-                 oldValue = samples[i].getOldData();
-                 newValue = samples[i].getNewData();
-                 infoTables[i].setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
-                 infoTables[i].setValueAt(oldValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 1);
-                 infoTables[i].setValueAt(newValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 2);
-             }
-          }
-
+                 //oldValue = samples[i].getOldData();
+                 //newValue = samples[i].getNewData();
+                 //infoTables[i].setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
+                 //infoTables[i].setValueAt(oldValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 1);
+                 //infoTables[i].setValueAt(newValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 2);
+             //}
+          //}
       }
       catch (Exception e)
       {
@@ -908,6 +933,7 @@ public class GUI_2 extends javax.swing.JFrame
        comments.setText(comment);
        return start;
    }
+   
    private int dataFill(List<String> list, int start)
    {
        start += FORMAT_INCR;
