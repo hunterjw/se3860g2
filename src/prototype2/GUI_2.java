@@ -49,7 +49,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    private int CHAR_LENGTH = 2;
    private int INC_START = 1;
    private Sample samples[];
-   private JTable infoTables[];
+   private int previousSelect;
    /**
     Creates new form GUI_2
     */
@@ -66,21 +66,15 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    }
    public void valueChanged(ListSelectionEvent event) 
    {
-       char oldValue[];
-       char newValue[];
-       int charCounter = 0;
-       for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++) 
+       int yearSpan = Integer.parseInt(EndYearInput.getText()) - Integer.parseInt(StartYearInput.getText()) + 1;
+       char newData[] = new char[yearSpan];
+       for(int i = 0; i < yearSpan; i++ )
        {
-
-           oldValue = samples[SampleTable.getSelectedRow()].getOldData();
-           newValue = samples[SampleTable.getSelectedRow()].getNewData();
-           InfoTable.setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
-           InfoTable.setValueAt(oldValue[charCounter], 
-                   x - Integer.parseInt(StartYearInput.getText()), 1);
-           InfoTable.setValueAt(newValue[charCounter], 
-                   x - Integer.parseInt(StartYearInput.getText()), 2);
-           charCounter++;
+           newData[i] = (char)InfoTable.getValueAt(i, 2);
        }
+       samples[previousSelect].setNewData(newData);
+       infoTableFill(SampleTable.getSelectedRow());
+       previousSelect = SampleTable.getSelectedRow();
 
    }
    /**
@@ -804,6 +798,19 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
             {
                InfoTable.setValueAt(x, x - Start, 0);
                InfoTable.setValueAt('.', x - Start, 1);
+               InfoTable.setValueAt('.', x - Start, 2);
+            }
+            int yearSpan = End - Start + 1;
+            char sampleValue[] = new char[yearSpan];
+            for(int i = 0; i < yearSpan; i++)
+                sampleValue[i] = '.';
+            samples = new Sample[SampleNum];
+            for (int i = 0; i < SampleNum; i++) 
+            {
+                samples[i] = new Sample(yearSpan,
+                        (SampleTable.getValueAt(i, 0)).toString());
+                samples[i].setOldData(sampleValue);
+                samples[i].setNewData(sampleValue);
             }
          }
          else
@@ -842,7 +849,9 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          int start = AFTER_HEADER;
          start = commentFill(list, start);
          start = dataFill(list, start);
-         tableFill(list, start);
+         sampleTableFill(list, start);
+         infoTableFill(0);
+         previousSelect = 0;
       }
       catch (Exception e)
       {
@@ -851,6 +860,24 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       
    }
    
+    private void infoTableFill(int selection) 
+    {
+        char oldValue[];
+        char newValue[];
+        int charCounter = 0;
+        for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++) 
+        {
+
+            oldValue = samples[selection].getOldData();
+            newValue = samples[selection].getNewData();
+            InfoTable.setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
+            InfoTable.setValueAt(oldValue[charCounter],
+                    x - Integer.parseInt(StartYearInput.getText()), 1);
+            InfoTable.setValueAt(newValue[charCounter],
+                    x - Integer.parseInt(StartYearInput.getText()), 2);
+            charCounter++;
+        }
+    }
    private void headerFill(List<String> list)
    {
        siteName.setText(list.get(Numbers.SITE_NAME.ordinal()));
@@ -902,6 +929,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
        String splitStr = list.get(start);
        String temp[] = splitStr.split(" ");
        StartYearInput.setText(temp[0]);
+       sampleIDLength.setText(temp[2]);
        int charLength = Integer.parseInt(temp[CHAR_LENGTH]);
        int SampleNum = Integer.parseInt(SampleNumberInput.getText());
        DefaultTableModel dtm2 = (DefaultTableModel) SampleTable.getModel();
@@ -931,7 +959,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
        return start;
    }
    
-   private void tableFill(List<String> list, int start)
+   private void sampleTableFill(List<String> list, int start)
    {
        String splitStr;
        String temp[];
@@ -1050,24 +1078,24 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       TableColumn  NewColumn = InfoTable.getColumnModel().getColumn(2);
       TableColumn  SavedColumn = InfoTable.getColumnModel().getColumn(1);
       JComboBox comboBox = new JComboBox();
-      comboBox.addItem("{");
-      comboBox.addItem("}");
-      comboBox.addItem("[");
-      comboBox.addItem("]");
-      comboBox.addItem("|"); 
-      comboBox.addItem(".");
-      comboBox.addItem("D");
-      comboBox.addItem("d");
-      comboBox.addItem("M");
-      comboBox.addItem("m");      
-      comboBox.addItem("U");    
-      comboBox.addItem("u");  
-      comboBox.addItem("E"); 
-      comboBox.addItem("e");
-      comboBox.addItem("L");
-      comboBox.addItem("l");      
-      comboBox.addItem("A");
-      comboBox.addItem("a");      
+      comboBox.addItem('{');
+      comboBox.addItem('}');
+      comboBox.addItem('[');
+      comboBox.addItem(']');
+      comboBox.addItem('|'); 
+      comboBox.addItem('.');
+      comboBox.addItem('D');
+      comboBox.addItem('d');
+      comboBox.addItem('M');
+      comboBox.addItem('m');      
+      comboBox.addItem('U');    
+      comboBox.addItem('u');  
+      comboBox.addItem('E'); 
+      comboBox.addItem('e');
+      comboBox.addItem('L');
+      comboBox.addItem('l');      
+      comboBox.addItem('A');
+      comboBox.addItem('a');      
       NewColumn.setCellEditor(new DefaultCellEditor(comboBox));
       DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
       NewColumn.setCellRenderer(renderer);
