@@ -13,9 +13,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
+import javax.swing.JTable;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
@@ -24,15 +30,26 @@ import javax.swing.table.TableColumn;
 
  @author John
  */
-public class GUI_2 extends javax.swing.JFrame
+public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
 {
-
+   private enum Numbers { SITE_NAME, SITE_CODE, COLLECTION_D, COLLECTORS,
+   CROSSDATERS, NUM_SAMPLES, SPECIES_NAME, COMMON_NAME, HABITAT_TYPE, COUNTRY,
+   STATE, COUNTY, PARK_MONUM, NATION_FOREST, RANGER_DIST, TOWNSHIP, RANGE,
+   SECTION, QUART_SECTION, UTM_EAS, UTM_NOR, LATITUDE, LONGITUDE, TOPO_MAP,
+   LOWEST_ELE, HIGEST_ELE, SLOPE, ASPECT, AREA_SAMP, SUBSTR_TYPE};
    File file;
    FileReader fileReader;
    BufferedReader bufferedReader;
    FileWriter fileWriter;
    BufferedWriter bufferedWriter;
    private JFileChooser fileChoose;
+   private int HEADER_LINES = 30;
+   private int AFTER_HEADER = 31;
+   private int FORMAT_INCR = 3;
+   private int CHAR_LENGTH = 2;
+   private int INC_START = 1;
+   private Sample samples[];
+   private JTable infoTables[];
    /**
     Creates new form GUI_2
     */
@@ -45,8 +62,27 @@ public class GUI_2 extends javax.swing.JFrame
       fileChoose.addChoosableFileFilter(new FHKFilter());
       fileChoose.setAcceptAllFileFilterUsed(false);
       SetupComboBox();
+      SampleTable.getSelectionModel().addListSelectionListener((ListSelectionListener)this);
    }
+   public void valueChanged(ListSelectionEvent event) 
+   {
+       char oldValue[];
+       char newValue[];
+       int charCounter = 0;
+       for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++) 
+       {
 
+           oldValue = samples[SampleTable.getSelectedRow()].getOldData();
+           newValue = samples[SampleTable.getSelectedRow()].getNewData();
+           InfoTable.setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
+           InfoTable.setValueAt(oldValue[charCounter], 
+                   x - Integer.parseInt(StartYearInput.getText()), 1);
+           InfoTable.setValueAt(newValue[charCounter], 
+                   x - Integer.parseInt(StartYearInput.getText()), 2);
+           charCounter++;
+       }
+
+   }
    /**
     This method is called from within the constructor to initialize the form.
     WARNING: Do NOT modify this code. The content of this method is always
@@ -786,7 +822,144 @@ public class GUI_2 extends javax.swing.JFrame
 
    private void load(File f)
    {
+      try
+      {
+         String splitStr;
+         String temp[];
+         String toKeep;
+         List<String> list;
+         list = Files.readAllLines(f.toPath());
+         for(int i = 0; i < HEADER_LINES; i++)
+         {
+            toKeep = "";
+            splitStr = list.get(i);
+            temp = splitStr.split(": ");
+            for(int j = 1; j < temp.length; j++)
+               toKeep += temp[j];
+            list.set(i, toKeep);
+         }         
+         headerFill(list);        
+         int start = AFTER_HEADER;
+         start = commentFill(list, start);
+         start = dataFill(list, start);
+         tableFill(list, start);
+      }
+      catch (Exception e)
+      {
+         System.out.println("Oh no " + e.toString());
+      }
       
+   }
+   
+   private void headerFill(List<String> list)
+   {
+       siteName.setText(list.get(Numbers.SITE_NAME.ordinal()));
+       siteCode.setText(list.get(Numbers.SITE_CODE.ordinal()));
+       collectionDate.setText(list.get(Numbers.COLLECTION_D.ordinal()));
+       collectors.setText(list.get(Numbers.COLLECTORS.ordinal()));
+       crossdaters.setText(list.get(Numbers.CROSSDATERS.ordinal()));
+       SampleNumberInput.setText(list.get(Numbers.NUM_SAMPLES.ordinal()));
+       speciesName.setText(list.get(Numbers.SPECIES_NAME.ordinal()));
+       commonName.setText(list.get(Numbers.COMMON_NAME.ordinal()));
+       habitatType.setText(list.get(Numbers.HABITAT_TYPE.ordinal()));
+       country.setText(list.get(Numbers.COUNTRY.ordinal()));
+       state.setText(list.get(Numbers.STATE.ordinal()));
+       county.setText(list.get(Numbers.COUNTY.ordinal()));
+       parkMonument.setText(list.get(Numbers.PARK_MONUM.ordinal()));
+       nationalForest.setText(list.get(Numbers.NATION_FOREST.ordinal()));
+       rangerDistrict.setText(list.get(Numbers.RANGER_DIST.ordinal()));
+       township.setText(list.get(Numbers.TOWNSHIP.ordinal()));
+       range.setText(list.get(Numbers.RANGE.ordinal()));
+       section.setText(list.get(Numbers.SECTION.ordinal()));
+       quarterSection.setText(list.get(Numbers.QUART_SECTION.ordinal()));
+       utmEasting.setText(list.get(Numbers.UTM_EAS.ordinal()));
+       utmNorthing.setText(list.get(Numbers.UTM_NOR.ordinal()));
+       latitude.setText(list.get(Numbers.LATITUDE.ordinal()));
+       longitude.setText(list.get(Numbers.LONGITUDE.ordinal()));
+       topographicMap.setText(list.get(Numbers.TOPO_MAP.ordinal()));
+       lowestElevation.setText(list.get(Numbers.LOWEST_ELE.ordinal()));
+       highestElevation.setText(list.get(Numbers.HIGEST_ELE.ordinal()));
+       slope.setText(list.get(Numbers.SLOPE.ordinal()));
+       aspect.setText(list.get(Numbers.ASPECT.ordinal()));
+       areaSampled.setText(list.get(Numbers.AREA_SAMP.ordinal()));
+       substrateType.setText(list.get(Numbers.SUBSTR_TYPE.ordinal()));       
+   }
+   private int commentFill(List<String> list, int start)
+   {
+       String comment = "";
+       while(!list.get(start).equals("End comments ABOVE this line."))
+       {
+          comment += (list.get(start) + "\n");
+          start++;
+       }
+       comments.setText(comment);
+       return start;
+   }
+   
+   private int dataFill(List<String> list, int start)
+   {
+       start += FORMAT_INCR;
+       String splitStr = list.get(start);
+       String temp[] = splitStr.split(" ");
+       StartYearInput.setText(temp[0]);
+       int charLength = Integer.parseInt(temp[CHAR_LENGTH]);
+       int SampleNum = Integer.parseInt(SampleNumberInput.getText());
+       DefaultTableModel dtm2 = (DefaultTableModel) SampleTable.getModel();
+       dtm2.setRowCount(SampleNum);
+       SampleTable.setModel(dtm2);
+       start++;
+       List<String> sampleNameList = new ArrayList<>();
+       for(int i = 0; i < SampleNum; i++)
+           sampleNameList.add("");
+       String newName = "";
+       for (int i = 0; i < charLength; i++)
+       {
+           for (int j = 0; j < SampleNum; j++)
+           {
+               newName = sampleNameList.get(j);
+               newName += list.get(start).charAt(j);
+               sampleNameList.set(j, newName);
+           }
+           start++;
+       }
+       for (int i = 0; i < SampleNum; i++)
+           SampleTable.setValueAt(sampleNameList.get(i), i, 0);
+       splitStr = list.get(list.size() - 1);
+       temp = splitStr.split(" ");
+       EndYearInput.setText(temp[1]);
+       start += INC_START;   
+       return start;
+   }
+   
+   private void tableFill(List<String> list, int start)
+   {
+       String splitStr;
+       String temp[];
+       int SampleNum = Integer.parseInt(SampleNumberInput.getText());
+       int yearSpan = Integer.parseInt(EndYearInput.getText())
+               - Integer.parseInt(StartYearInput.getText()) + 1;
+       char sampleValue[][] = new char[SampleNum][yearSpan];
+       for (int i = 0; i < yearSpan; i++) 
+       {
+           splitStr = list.get(start);
+           temp = splitStr.split(" ");
+           for (int j = 0; j < SampleNum; j++) 
+           {
+               sampleValue[j][i] = temp[0].charAt(j);
+           }
+           start++;
+       }
+       samples = new Sample[SampleNum];
+       DefaultTableModel dtm = (DefaultTableModel) InfoTable.getModel();
+       dtm.setRowCount(yearSpan);
+       InfoTable.setModel(dtm);
+       for (int i = 0; i < SampleNum; i++) 
+       {
+           samples[i] = new Sample(yearSpan,
+                   (SampleTable.getValueAt(i, 0)).toString());
+           samples[i].setOldData(sampleValue[i]);
+           samples[i].setNewData(sampleValue[i]);
+       }    
    }
    
    private void save(File f)
