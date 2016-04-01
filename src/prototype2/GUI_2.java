@@ -153,7 +153,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       jPanel1 = new javax.swing.JPanel();
       jLabel5 = new javax.swing.JLabel();
       WarningLabel = new javax.swing.JLabel();
-      SampleNumberInput = new java.awt.TextField();
       jLabel4 = new javax.swing.JLabel();
       jScrollPane3 = new javax.swing.JScrollPane();
       InfoTable = new javax.swing.JTable();
@@ -164,9 +163,9 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       jScrollPane4 = new javax.swing.JScrollPane();
       SampleTable = new javax.swing.JTable();
       jButton1 = new javax.swing.JButton();
-      jButton2 = new javax.swing.JButton();
       jLabel16 = new javax.swing.JLabel();
       sampleIDLength = new javax.swing.JTextField();
+      SampleNumberInput = new javax.swing.JTextField();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu2 = new javax.swing.JMenu();
       newFileOption = new javax.swing.JMenuItem();
@@ -461,14 +460,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       WarningLabel.setText("ERROR");
       WarningLabel.setEnabled(false);
 
-      SampleNumberInput.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            SampleNumberInputActionPerformed(evt);
-         }
-      });
-
       jLabel4.setText("Sample Information");
 
       jScrollPane3.setName(""); // NOI18N
@@ -526,16 +517,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          }
       });
 
-      jButton2.setText("Save Changes");
-      jButton2.setEnabled(false);
-      jButton2.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            jButton2ActionPerformed(evt);
-         }
-      });
-
       jLabel16.setText("Sample ID Length");
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -545,15 +526,11 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          .addGroup(jPanel1Layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel5)
                .addComponent(WarningLabel)
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                     .addComponent(jButton1)
                      .addComponent(jLabel16)
                      .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,25 +541,26 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
                            .addComponent(jLabel1)
                            .addComponent(EndYearInput, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
                      .addComponent(sampleIDLength, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                  .addGap(35, 35, 35)
+                  .addGap(21, 21, 21)
                   .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                     .addComponent(SampleNumberInput)
+                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                   .addGap(149, 149, 149)
                   .addComponent(jLabel4)))
-            .addContainerGap(12, Short.MAX_VALUE))
+            .addContainerGap(26, Short.MAX_VALUE))
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel1Layout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jLabel5)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addGroup(jPanel1Layout.createSequentialGroup()
-                  .addGap(6, 6, 6)
-                  .addComponent(jLabel4)))
-            .addGap(4, 4, 4)
+            .addGap(3, 3, 3)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+               .addComponent(jLabel4)
+               .addComponent(SampleNumberInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(1, 1, 1)
             .addComponent(WarningLabel)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addGroup(jPanel1Layout.createSequentialGroup()
@@ -603,9 +581,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-               .addComponent(jButton1)
-               .addComponent(jButton2))
+            .addComponent(jButton1)
             .addContainerGap(43, Short.MAX_VALUE))
       );
 
@@ -739,11 +715,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       // TODO add your handling code here:
    }//GEN-LAST:event_StartYearInputActionPerformed
 
-   private void SampleNumberInputActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_SampleNumberInputActionPerformed
-   {//GEN-HEADEREND:event_SampleNumberInputActionPerformed
-
-   }//GEN-LAST:event_SampleNumberInputActionPerformed
-
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
    {//GEN-HEADEREND:event_jButton1ActionPerformed
       // TODO add your handling code here:
@@ -760,7 +731,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
             Integer.parseInt(EndYearInput.getText()) > 0 &&
             Integer.parseInt(SampleNumberInput.getText()) > 0)
          {
-            jButton2.setEnabled(true);
             Start = Integer.parseInt(StartYearInput.getText());
             End = Integer.parseInt(EndYearInput.getText());
             SampleNum = Integer.parseInt(SampleNumberInput.getText());
@@ -808,11 +778,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
             WarningLabel.setVisible(true);
          }
       }   }//GEN-LAST:event_jButton1ActionPerformed
-
-   private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
-   {//GEN-HEADEREND:event_jButton2ActionPerformed
-      // TODO add your handling code here:
-   }//GEN-LAST:event_jButton2ActionPerformed
 
    private void saveFileOptionMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_saveFileOptionMouseClicked
    {//GEN-HEADEREND:event_saveFileOptionMouseClicked
@@ -1050,7 +1015,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
             for (int j = 0; j < Integer.parseInt(SampleNumberInput.getText());
                   j++)
             {
-               outF.print("."); //this will be a character read from the table
+               outF.print((samples[j].getNewData())[i]); 
             }
             outF.println(" " + (Integer.parseInt(StartYearInput.getText()) 
                   + i));
@@ -1148,7 +1113,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private java.awt.TextField EndYearInput;
    private javax.swing.JTable InfoTable;
-   private java.awt.TextField SampleNumberInput;
+   private javax.swing.JTextField SampleNumberInput;
    private javax.swing.JTable SampleTable;
    private java.awt.TextField StartYearInput;
    private javax.swing.JLabel WarningLabel;
@@ -1165,7 +1130,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    private javax.swing.JTextField habitatType;
    private javax.swing.JTextField highestElevation;
    private javax.swing.JButton jButton1;
-   private javax.swing.JButton jButton2;
    private javax.swing.JLabel jLabel1;
    private javax.swing.JLabel jLabel10;
    private javax.swing.JLabel jLabel11;
