@@ -142,7 +142,6 @@ public class GUI_2 extends javax.swing.JFrame
       newFileOption = new javax.swing.JMenuItem();
       loadFileOption = new javax.swing.JMenuItem();
       saveFileOption = new javax.swing.JMenuItem();
-      saveFileAsOption = new javax.swing.JMenuItem();
       exitOption = new javax.swing.JMenuItem();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -555,7 +554,6 @@ public class GUI_2 extends javax.swing.JFrame
                   .addComponent(jLabel4)))
             .addGap(4, 4, 4)
             .addComponent(WarningLabel)
-            .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(20, 20, 20)
@@ -578,7 +576,7 @@ public class GUI_2 extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(jButton1)
                .addComponent(jButton2))
-            .addContainerGap(25, Short.MAX_VALUE))
+            .addContainerGap(43, Short.MAX_VALUE))
       );
 
       jTabbedPane1.addTab("Sample Data", jPanel1);
@@ -606,6 +604,13 @@ public class GUI_2 extends javax.swing.JFrame
       jMenu2.add(loadFileOption);
 
       saveFileOption.setText("Save File");
+      saveFileOption.addMouseListener(new java.awt.event.MouseAdapter()
+      {
+         public void mouseClicked(java.awt.event.MouseEvent evt)
+         {
+            saveFileOptionMouseClicked(evt);
+         }
+      });
       saveFileOption.addActionListener(new java.awt.event.ActionListener()
       {
          public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -614,16 +619,6 @@ public class GUI_2 extends javax.swing.JFrame
          }
       });
       jMenu2.add(saveFileOption);
-
-      saveFileAsOption.setText("Save File As");
-      saveFileAsOption.addActionListener(new java.awt.event.ActionListener()
-      {
-         public void actionPerformed(java.awt.event.ActionEvent evt)
-         {
-            saveFileAsOptionActionPerformed(evt);
-         }
-      });
-      jMenu2.add(saveFileAsOption);
 
       exitOption.setText("Exit");
       exitOption.addActionListener(new java.awt.event.ActionListener()
@@ -695,15 +690,9 @@ public class GUI_2 extends javax.swing.JFrame
    private void saveFileOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveFileOptionActionPerformed
    {//GEN-HEADEREND:event_saveFileOptionActionPerformed
       //saves changes to the .FHX file based on the table
-      if (file != null)
-      save(file);//not sure if this is good
-   }//GEN-LAST:event_saveFileOptionActionPerformed
-
-   private void saveFileAsOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_saveFileAsOptionActionPerformed
-   {//GEN-HEADEREND:event_saveFileAsOptionActionPerformed
       newFileOptionActionPerformed(evt);
-      saveFileOptionActionPerformed(evt);
-   }//GEN-LAST:event_saveFileAsOptionActionPerformed
+      save(file);
+   }//GEN-LAST:event_saveFileOptionActionPerformed
 
    private void exitOptionActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitOptionActionPerformed
    {//GEN-HEADEREND:event_exitOptionActionPerformed
@@ -780,9 +769,12 @@ public class GUI_2 extends javax.swing.JFrame
    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
    {//GEN-HEADEREND:event_jButton2ActionPerformed
       // TODO add your handling code here:
-       newFileOptionActionPerformed(evt);
-      saveFileOptionActionPerformed(evt);
    }//GEN-LAST:event_jButton2ActionPerformed
+
+   private void saveFileOptionMouseClicked(java.awt.event.MouseEvent evt)//GEN-FIRST:event_saveFileOptionMouseClicked
+   {//GEN-HEADEREND:event_saveFileOptionMouseClicked
+
+   }//GEN-LAST:event_saveFileOptionMouseClicked
 
    private void load(File f)
    {
@@ -795,7 +787,7 @@ public class GUI_2 extends javax.swing.JFrame
 
       try
       {
-         PrintStream outF = new PrintStream(new FileOutputStream("test.FHX"));
+         PrintStream outF = new PrintStream(new FileOutputStream(f.getPath()));
 
          outF.println("Name of site   : " + siteName.getText());
          outF.println("Site code      : " + siteCode.getText());
@@ -1026,7 +1018,6 @@ public class GUI_2 extends javax.swing.JFrame
    private javax.swing.JTextField range;
    private javax.swing.JTextField rangerDistrict;
    private javax.swing.JTextField sampleIDLength;
-   private javax.swing.JMenuItem saveFileAsOption;
    private javax.swing.JMenuItem saveFileOption;
    private javax.swing.JTextField section;
    private javax.swing.JTextField siteCode;
