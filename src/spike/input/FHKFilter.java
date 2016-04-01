@@ -1,4 +1,4 @@
-package prototype2;
+package spike.input;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
