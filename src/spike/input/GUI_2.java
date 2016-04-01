@@ -836,51 +836,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          int start = AFTER_HEADER;
          start = commentFill(list, start);
          start = dataFill(list, start);
-         //fill table
-         int SampleNum = Integer.parseInt(SampleNumberInput.getText());
-         int yearSpan = Integer.parseInt(EndYearInput.getText()) - 
-                 Integer.parseInt(StartYearInput.getText()) + 1;
-         char sampleValue[][] = new char[SampleNum][yearSpan];
-         for(int i = 0; i < yearSpan; i++)
-         {
-             splitStr = list.get(start);
-             temp = splitStr.split(" ");
-             for (int j = 0; j < SampleNum; j++)
-             {
-                 sampleValue[j][i] = temp[0].charAt(j);
-             }
-             start++;
-         }
-         samples = new Sample[SampleNum];
-         //infoTables = new JTable[SampleNum];
-         DefaultTableModel dtm = (DefaultTableModel) InfoTable.getModel();
-         dtm.setRowCount(yearSpan);
-         InfoTable.setModel(dtm);
-         for(int i = 0; i < SampleNum; i++)
-         {
-             samples[i] = new Sample(yearSpan, 
-                     (SampleTable.getValueAt(i, 0)).toString());
-             samples[i].setOldData(sampleValue[i]);
-             samples[i].setNewData(sampleValue[i]);
-             //JTable test = InfoTable;
-             //infoTables[i] = test;
-         }
-         
-         //char oldValue[];
-         //char newValue[];
-         //for(int i = 0; i < SampleNum; i++)
-         //{
-             //int charCounter = 0;
-             //for (int x = Integer.parseInt(StartYearInput.getText()); x <= Integer.parseInt(EndYearInput.getText()); x++)
-             //{
-                 
-                 //oldValue = samples[i].getOldData();
-                 //newValue = samples[i].getNewData();
-                 //infoTables[i].setValueAt(x, x - Integer.parseInt(StartYearInput.getText()), 0);
-                 //infoTables[i].setValueAt(oldValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 1);
-                 //infoTables[i].setValueAt(newValue[charCounter], x - Integer.parseInt(StartYearInput.getText()), 2);
-             //}
-          //}
+         tableFill(list, start);
       }
       catch (Exception e)
       {
@@ -968,6 +924,38 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
        start += INC_START;   
        return start;
    }
+   
+   private void tableFill(List<String> list, int start)
+   {
+       String splitStr;
+       String temp[];
+       int SampleNum = Integer.parseInt(SampleNumberInput.getText());
+       int yearSpan = Integer.parseInt(EndYearInput.getText())
+               - Integer.parseInt(StartYearInput.getText()) + 1;
+       char sampleValue[][] = new char[SampleNum][yearSpan];
+       for (int i = 0; i < yearSpan; i++) 
+       {
+           splitStr = list.get(start);
+           temp = splitStr.split(" ");
+           for (int j = 0; j < SampleNum; j++) 
+           {
+               sampleValue[j][i] = temp[0].charAt(j);
+           }
+           start++;
+       }
+       samples = new Sample[SampleNum];
+       DefaultTableModel dtm = (DefaultTableModel) InfoTable.getModel();
+       dtm.setRowCount(yearSpan);
+       InfoTable.setModel(dtm);
+       for (int i = 0; i < SampleNum; i++) 
+       {
+           samples[i] = new Sample(yearSpan,
+                   (SampleTable.getValueAt(i, 0)).toString());
+           samples[i].setOldData(sampleValue[i]);
+           samples[i].setNewData(sampleValue[i]);
+       }    
+   }
+   
    private void save(File f)
    {
       String input = "";
