@@ -832,7 +832,7 @@ public final class GUI_2 extends javax.swing.JFrame implements ListSelectionList
       {
          System.out.println("Oh no " + e.toString());
       }
-      
+      this.SampleTable.setRowSelectionInterval(0, 0);
    }
    
     private void infoTableFill(int selection) 
