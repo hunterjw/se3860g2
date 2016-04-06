@@ -166,6 +166,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       jLabel16 = new javax.swing.JLabel();
       sampleIDLength = new javax.swing.JTextField();
       SampleNumberInput = new javax.swing.JTextField();
+      currentEdit = new javax.swing.JLabel();
       jMenuBar1 = new javax.swing.JMenuBar();
       jMenu2 = new javax.swing.JMenu();
       newFileOption = new javax.swing.JMenuItem();
@@ -473,7 +474,18 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          {
             "Year", "Event ", "New Event "
          }
-      ));
+      )
+      {
+         boolean[] canEdit = new boolean []
+         {
+            false, false, true
+         };
+
+         public boolean isCellEditable(int rowIndex, int columnIndex)
+         {
+            return canEdit [columnIndex];
+         }
+      });
       jScrollPane3.setViewportView(InfoTable);
 
       StartYearInput.addActionListener(new java.awt.event.ActionListener()
@@ -530,7 +542,6 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                      .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                     .addComponent(jButton1)
                      .addComponent(jLabel16)
                      .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,7 +559,11 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
                      .addComponent(SampleNumberInput)
                      .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                   .addGap(149, 149, 149)
-                  .addComponent(jLabel4)))
+                  .addComponent(jLabel4))
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jButton1)
+                  .addGap(18, 18, 18)
+                  .addComponent(currentEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(26, Short.MAX_VALUE))
       );
       jPanel1Layout.setVerticalGroup(
@@ -581,8 +596,12 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
                   .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                   .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton1)
-            .addContainerGap(43, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jButton1)
+               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                  .addComponent(currentEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(18, 18, 18)))
+            .addContainerGap(26, Short.MAX_VALUE))
       );
 
       jTabbedPane1.addTab("Sample Data", jPanel1);
@@ -666,8 +685,8 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          if(!file_name.endsWith(".FHX"))
          file_name += ".FHX";
          file = new File(file_name);
-         if(!file.exists())
-         {
+        // if(!file.exists())
+         //{
             try
             {
                file.createNewFile();//create the file in the folder selected
@@ -676,9 +695,9 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
             {
                System.out.println("Oops");
             }
-         }
-         else
-         System.out.println("It exsists");//tell user the file exsits
+         //}
+         //else
+         //System.out.println("It exsists");//tell user the file exsits
       }
    }//GEN-LAST:event_newFileOptionActionPerformed
 
@@ -792,6 +811,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          String temp[];
          String toKeep;
          List<String> list;
+         currentEdit.setText("Currently editing: " + f.getName());
          list = Files.readAllLines(f.toPath());
          for(int i = 0; i < HEADER_LINES; i++)
          {
@@ -950,7 +970,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    private void save(File f)
    {
       String input = "";
-
+      currentEdit.setText("Currently editing: " + f.getName());
       try
       {
          PrintStream outF = new PrintStream(new FileOutputStream(f.getPath()));
@@ -1010,6 +1030,12 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
          outF.println("");
          int yearsRun  = Integer.parseInt(EndYearInput.getText()) + 1 - 
                Integer.parseInt(StartYearInput.getText());
+       char newData[] = new char[yearsRun];
+       for(int i = 0; i < yearsRun; i++ )
+       {
+           newData[i] = (char)InfoTable.getValueAt(i, 2);
+       }
+       samples[SampleTable.getSelectedRow()].setNewData(newData);
          for (int i = 0; i < yearsRun; i++)
          {
             for (int j = 0; j < Integer.parseInt(SampleNumberInput.getText());
@@ -1126,6 +1152,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    private javax.swing.JTextField country;
    private javax.swing.JTextField county;
    private javax.swing.JTextField crossdaters;
+   private javax.swing.JLabel currentEdit;
    private javax.swing.JMenuItem exitOption;
    private javax.swing.JTextField habitatType;
    private javax.swing.JTextField highestElevation;
