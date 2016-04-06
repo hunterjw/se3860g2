@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package spikes.tabbedwindow;
+package spike.tabbedwindow;
 
 // this is a minor change
 

@@ -1,2 +1,17 @@
-/File output Spike/fileOutSpike/nbproject/private/
-/File output Spike/fileOutSpike/build/
+# based on: https://github.com/github/gitignore/blob/master/Global/NetBeans.gitignore #
+
+# Netbeans Project files #
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+
+# Class Files #
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear

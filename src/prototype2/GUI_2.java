@@ -19,18 +19,18 @@ import java.util.List;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
-import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import sampleData.Sample;
 
 /**
 
  @author John
  */
-public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
+public final class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
 {
    private enum Numbers { SITE_NAME, SITE_CODE, COLLECTION_D, COLLECTORS,
    CROSSDATERS, NUM_SAMPLES, SPECIES_NAME, COMMON_NAME, HABITAT_TYPE, COUNTRY,
@@ -42,12 +42,12 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
    BufferedReader bufferedReader;
    FileWriter fileWriter;
    BufferedWriter bufferedWriter;
-   private JFileChooser fileChoose;
-   private int HEADER_LINES = 30;
-   private int AFTER_HEADER = 31;
-   private int FORMAT_INCR = 3;
-   private int CHAR_LENGTH = 2;
-   private int INC_START = 1;
+   private final JFileChooser fileChoose;
+   private final int HEADER_LINES = 30;
+   private final int AFTER_HEADER = 31;
+   private final int FORMAT_INCR = 3;
+   private final int CHAR_LENGTH = 2;
+   private final int INC_START = 1;
    private Sample samples[];
    private int previousSelect;
    /**
@@ -64,6 +64,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       SetupComboBox();
       SampleTable.getSelectionModel().addListSelectionListener((ListSelectionListener)this);
    }
+   @Override
    public void valueChanged(ListSelectionEvent event) 
    {
        int yearSpan = Integer.parseInt(EndYearInput.getText()) - Integer.parseInt(StartYearInput.getText()) + 1;
@@ -682,22 +683,19 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       {
          file = fileChoose.getSelectedFile(); //this will save the .FHX file path?
          String file_name = file.toString();
-         if(!file_name.endsWith(".FHX"))
-         file_name += ".FHX";
+         if (!file_name.endsWith(".FHX"))
+         {
+            file_name += ".FHX";
+         }
          file = new File(file_name);
-        // if(!file.exists())
-         //{
-            try
-            {
-               file.createNewFile();//create the file in the folder selected
-            }
-            catch (IOException ex)
-            {
-               System.out.println("Oops");
-            }
-         //}
-         //else
-         //System.out.println("It exsists");//tell user the file exsits
+         try
+         {
+            file.createNewFile();//create the file in the folder selected
+         }
+         catch (IOException ex)
+         {
+            System.out.println("Oops");
+         }
       }
    }//GEN-LAST:event_newFileOptionActionPerformed
 
@@ -1051,7 +1049,7 @@ public class GUI_2 extends javax.swing.JFrame implements ListSelectionListener
       {
          System.out.println("file error: " + ex);
       }
-      catch (Exception ex)
+      catch (NumberFormatException ex)
       {
          System.out.println("error: " + ex);
       }
